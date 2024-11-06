@@ -11,7 +11,21 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: '#FFFFFF', // Blanc pour l'icône active
+        tabBarInactiveTintColor: 'gray', // Gris clair pour les icônes inactives
+        tabBarStyle: {
+          backgroundColor: '#000000', // Fond noir ou gris foncé
+          height: 60,
+          paddingBottom: 5,
+          paddingTop: 5,
+          shadowColor: '#000', // Couleur de l'ombre
+          shadowOffset: { width: 0, height: -3 },
+          shadowOpacity: 0.3,
+          shadowRadius: 5,
+          elevation: 10, // Pour les ombres sur Android
+          borderTopWidth: 2,
+          borderTopColor: '#333333', // Couleur de la bordure
+      },      
         headerShown: false,
       }}>
       <Tabs.Screen
@@ -19,7 +33,11 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon 
+              name={focused ? 'home' : 'home-outline'} 
+              color={color} 
+              style={focused ? { transform: [{ scale: 1.2 }] } : {}}
+            />
           ),
         }}
       />
@@ -28,7 +46,11 @@ export default function TabLayout() {
         options={{
           title: 'Carte',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon 
+              name={focused ? 'map' : 'map-outline'} 
+              color={color} 
+              style={focused ? { transform: [{ scale: 1.2 }] } : {}}
+            />
           ),
         }}
       />
@@ -37,7 +59,11 @@ export default function TabLayout() {
         options={{
           title: 'Quizz',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon 
+              name={focused ? 'help-circle' : 'help-circle-outline'} 
+              color={color} 
+              style={focused ? { transform: [{ scale: 1.2 }] } : {}}
+            />
           ),
         }}
       />
@@ -46,7 +72,11 @@ export default function TabLayout() {
         options={{
           title: 'Profil',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon 
+              name={focused ? 'person' : 'person-outline'} 
+              color={color} 
+              style={focused ? { transform: [{ scale: 1.2 }] } : {}}
+            />
           ),
         }}
       />

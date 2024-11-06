@@ -8,18 +8,20 @@ interface ProfilTouchProps {
   title: string;
   type?: ProfilTouchType;
   icon?: keyof typeof Ionicons.glyphMap;
+  onPress?: () => void; // Ajout de la prop onPress
 }
 
 const ProfilTouch: React.FC<ProfilTouchProps> = ({
   title,
   type = "normal",
   icon,
+  onPress, // Ajout de onPress ici
 }) => {
   return (
     <View
       style={[styles.viewarea, type === "destructive" && styles.destructive]}
     >
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}> {/* Utilisation de onPress */}
         <Text style={styles.row}>
           {icon && (
             <Ionicons

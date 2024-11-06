@@ -28,6 +28,8 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="screensProfil/parametres" options={{ title: 'Paramètres' }} />
+        <Stack.Screen name="screensProfil/mesInformations" options={{ title: 'Mes Informations' }} />
         <Stack.Screen name="+not-found" />
       </Stack>
     </ThemeProvider>
