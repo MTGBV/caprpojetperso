@@ -8,7 +8,6 @@ import Icon from 'react-native-vector-icons/Ionicons'; // Assurez-vous d'avoir i
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../.expo/types/navigationTypes'; // Importez le type que vous avez défini
 
-
 const Profil = () => {
     // Utilisez NavigationProp avec RootStackParamList pour typer navigation
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -24,48 +23,42 @@ const Profil = () => {
                         <Image source={require('../../assets/images/favicon.png')} style={styles.image} />
                         <View style={styles.textContainer}>
                             <ThemedText type="subtitle" style={styles.whiteText}>Marie André</ThemedText>
-                            <ThemedText style={styles.whiteText}>Rougon</ThemedText>
+                            <ThemedText style={styles.subText}>Rougon</ThemedText>
                         </View>
                     </View>
 
-                    {/* Mon Compte Section */}
+                    {/* Sections */}
                     <View style={styles.sectionContainer}>
-                        <ThemedText type='subtitle' style={[styles.sectionTitle, styles.whiteText]}>Mon Compte</ThemedText>
+                        <ThemedText type='subtitle' style={styles.sectionTitle}>Mon Compte</ThemedText>
                         <ProfilTouch title='Paramètres du Compte' icon="person-outline" onPress={() => navigation.navigate('screensProfil/parametres')} />
                     </View>
 
-                     {/* Paramètres Section */}
-                     <View style={styles.sectionContainer}>
-                        <ThemedText type='subtitle' style={[styles.sectionTitle, styles.whiteText]}>Paramètres</ThemedText>
+                    <View style={styles.sectionContainer}>
+                        <ThemedText type='subtitle' style={styles.sectionTitle}>Paramètres</ThemedText>
                         <ProfilTouch title='Sécurité' icon="lock-closed-outline" />
                         <ProfilTouch title='Notifications' icon="notifications-outline" />
                     </View>
 
-                     {/* Espace d'Information */}
-                     <View style={styles.sectionContainer}>
-                        <ThemedText type='subtitle' style={[styles.sectionTitle, styles.whiteText]}>Espace d'Information</ThemedText>
+                    <View style={styles.sectionContainer}>
+                        <ThemedText type='subtitle' style={styles.sectionTitle}>Espace d'Information</ThemedText>
                         <ProfilTouch title='Mes Informations' icon="information-circle-outline" onPress={() => navigation.navigate('screensProfil/mesInformations')} />
                     </View>
 
-                    {/* Historique des Alertes */}
                     <View style={styles.sectionContainer}>
-                        <ThemedText type='subtitle' style={[styles.sectionTitle, styles.whiteText]}>Historique</ThemedText>
+                        <ThemedText type='subtitle' style={styles.sectionTitle}>Historique</ThemedText>
                         <ProfilTouch title='Historique des Alertes' icon="time-outline" />
                     </View>
 
-                    {/* Paramètres de Notification */}
                     <View style={styles.sectionContainer}>
-                        <ThemedText type='subtitle' style={[styles.sectionTitle, styles.whiteText]}>Paramètres de Notification</ThemedText>
+                        <ThemedText type='subtitle' style={styles.sectionTitle}>Paramètres de Notification</ThemedText>
                         <ProfilTouch title='Personnaliser les Alertes' icon="settings-outline" />
                     </View>
 
-                    {/* Contact d'Urgence */}
                     <View style={styles.sectionContainer}>
-                        <ThemedText type='subtitle' style={[styles.sectionTitle, styles.whiteText]}>Contact d'Urgence</ThemedText>
+                        <ThemedText type='subtitle' style={styles.sectionTitle}>Contact d'Urgence</ThemedText>
                         <ProfilTouch title='Enregistrer un Contact' icon="call-outline" />
                     </View>
 
-                    {/* Déconnexion Button */}
                     <TouchableOpacity style={styles.logoutButton}>
                         <Icon name="exit-outline" size={20} color="#FFFFFF" />
                         <ThemedText type="default" style={styles.logoutText}>Déconnexion</ThemedText>
@@ -110,13 +103,22 @@ const styles = StyleSheet.create({
     textContainer: {
         justifyContent: 'center',
     },
+    subText: {
+        color: '#AAAAAA', // Texte secondaire pour un bon contraste
+    },
     sectionContainer: {
-        backgroundColor: '#1A1A1A', // Fond sombre pour les sections
+        backgroundColor: '#121212', // Fond noir pour les sections
         borderRadius: 10,
-        padding: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
         marginBottom: 20,
+        borderColor: '#333333', // Bordure pour donner de la structure
+        borderWidth: 1,
     },
     sectionTitle: {
+        color: '#FFFFFF', // Couleur principale
+        fontSize: 18,
+        fontWeight: 'bold',
         marginBottom: 10,
     },
     logoutButton: {
@@ -133,7 +135,7 @@ const styles = StyleSheet.create({
         marginLeft: 8,
     },
     footerText: {
-        color: '#505050',
+        color: '#AAAAAA',
         textAlign: 'center',
         marginTop: 25,
     },
