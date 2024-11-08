@@ -10,6 +10,18 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
+1.1 Pour utiliser les notifs
+
+   ```bash
+   npm install expo-notifications
+   ```
+
+1.1 Pour utiliser les sauvegardes de données
+
+   ```bash
+   npm install expo-secure-store
+   ```
+
 2. Start the app
 
    ```bash
