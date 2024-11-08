@@ -1,10 +1,42 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import * as Notifications from 'expo-notifications';
+import { registerForPushNotificationsAsync, sendPushNotification } from '../../constants/notificationService'; // Assurez-vous d'avoir le bon chemin
+import AlertBanner from '../../components/alertBanner'; // Assurez-vous d'avoir le bon chemin pour AlertBanner
 
 const Home = () => {
+    const [expoPushToken, setExpoPushToken] = useState<string | null>(null);
+    const [showBanner, setShowBanner] = useState(false);
+
+    useEffect(() => {
+        // Enregistrement des notifications et récupération du token
+        registerForPushNotificationsAsync().then(token => {
+            if (token) {
+                setExpoPushToken(token);
+                console.log("Token de notification obtenu :", token);
+            } else {
+                console.warn('Impossible de récupérer le token de notification');
+            }
+        });
+    }, []);
+
+    // Fonction pour envoyer une notification et afficher la bannière
+    const triggerAlertNotification = () => {
+        if (expoPushToken) {
+            sendPushNotification(expoPushToken, "Alerte Feu", "Un feu de forêt a été détecté près de chez vous !");
+            setShowBanner(true);  // Affiche la bannière
+            setTimeout(() => setShowBanner(false), 10000);  // Cache la bannière après 10 secondes
+        } else {
+            console.warn("Aucun token pour envoyer la notification");
+        }
+    };
+
     return (
         <ScrollView style={styles.container}>
+            {/* Banderole rouge pour les alertes récentes */}
+            {showBanner && <AlertBanner message="Un feu de forêt a été signalé près de chez vous !" />}
+            
             {/* Section: Liens vers des cours et leçons */}
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Cours et Leçons de Sensibilisation</Text>
@@ -38,6 +70,9 @@ const Home = () => {
                 <Text style={styles.sectionTitle}>Conseil du Jour</Text>
                 <Text style={styles.tipText}>Pensez à élaguer les arbres autour de votre maison pour réduire les risques de propagation de feu.</Text>
             </View>
+
+            {/* Bouton pour tester l'alerte */}
+            <Button title="Tester l'Alerte de Feu" onPress={triggerAlertNotification} />
         </ScrollView>
     );
 };
